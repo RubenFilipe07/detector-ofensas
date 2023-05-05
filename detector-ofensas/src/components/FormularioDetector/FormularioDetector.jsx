@@ -12,6 +12,7 @@ const FormularioLogin = () => {
             palavrasDetectadas: [],
             porcetagemDetecadasTexto: 0,
             textoCensurado: '',
+           
         }
     ]);
     const [visible, setVisible] = useState(false);
@@ -24,7 +25,9 @@ const FormularioLogin = () => {
    useEffect(() => {
         if (resultadoApi.qtdPalavrasDetectadas > 0) {
             setVisible(true);
-            console.log(resultadoApi);
+            message.error('Comentário negado! Foram detectadas palavras impróprias');
+        }else if(resultadoApi.qtdPalavrasDetectadas === 0){
+            message.success('Comentário aceito! Nem uma palavra imprópria foi detectada');
         }
     }, [resultadoApi]);
 
